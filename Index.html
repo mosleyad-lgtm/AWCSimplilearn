@@ -4,244 +4,183 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-  /* ----- Namespaced UMSL tokens & base ----- */
-  .umsl-slab{
-    --umsl-red:#BA0C2F;        /* Triton Red */
-    --umsl-red-deep:#8A0A23;
-    --umsl-gold:#F1BE48;       /* Gold */
-    --ink:#12212B;
-    --muted:#6A7680;
-    --bg:#FFFFFF;
-    --bg-soft:#F5F6F8;
-    --border:#E6E8EB;
-    --shadow:0 12px 36px rgba(0,0,0,.10);
-    --shadow-soft:0 8px 28px rgba(0,0,0,.08);
-    --radius:18px;
-    font-family:'Roboto',system-ui,-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  .umsl-slab *{ box-sizing:border-box; }
-  .umsl-slab .wrap{ max-width:1120px; margin:0 auto; padding:28px 20px; }
-
-  /* ----- Two-column layout: content + sticky rail ----- */
-  .umsl-slab .umsl-rail-layout{
-    display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:28px; align-items:start;
-  }
-  @media (max-width:980px){ .umsl-slab .umsl-rail-layout{ grid-template-columns:1fr } }
-
-  /* ----- Hero ----- */
-  .umsl-slab .umsl-hero{
-    position:relative;
-    background:
-      radial-gradient(1200px 400px at 20% -20%, rgba(186,12,47,.12), transparent 55%),
-      radial-gradient(1200px 400px at 100% 0%, rgba(241,190,72,.10), transparent 55%),
-      var(--bg);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    overflow:hidden;
-    padding:32px 22px;
-  }
-  @media (min-width:900px){ .umsl-slab .umsl-hero{ padding:48px 56px; } }
-  .umsl-slab .umsl-hero .eyebrow{
-    display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:8px;
-  }
-  .umsl-slab .umsl-hero h1{ margin:0 0 10px; font-weight:900; font-size:clamp(28px,4.2vw,44px); color:var(--ink); }
-  .umsl-slab .umsl-hero .underline{ width:78px; height:5px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 16px; }
-  .umsl-slab .umsl-hero p{ margin:0; font-size:clamp(16px,1.5vw,18px); line-height:1.6; color:var(--muted); max-width:72ch; }
-
-  /* ----- Panels & headings ----- */
-  .umsl-slab .umsl-panel{ background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); padding:22px; margin-top:22px; }
-  @media (min-width:900px){ .umsl-slab .umsl-panel{ padding:28px 32px; } }
-  .umsl-slab .umsl-h2{ margin:0; text-transform:uppercase; letter-spacing:.04em; font-weight:900; font-size:clamp(20px,2.6vw,28px); color:var(--umsl-red); text-align:left; }
-  .umsl-slab .umsl-underline{ width:64px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 14px; }
-
-  /* ----- Lists (checks) ----- */
-  .umsl-slab .umsl-list{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:10px; }
-  .umsl-slab .umsl-list li{ position:relative; padding-left:28px; color:var(--ink); font-size:1rem; line-height:1.55; }
-  .umsl-slab .umsl-list li::before{
-    content:"✓"; position:absolute; left:0; top:.15rem; width:20px; height:20px; display:grid; place-items:center;
-    border-radius:6px; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:700; font-size:.85rem;
-  }
-
-  /* ----- Callout (Prerequisites) ----- */
-  .umsl-slab .umsl-callout{
-    background:linear-gradient(0deg, rgba(241,190,72,.10), rgba(241,190,72,.10)), #FFF;
-    border:1px solid rgba(241,190,72,.5);
-    border-left:6px solid var(--umsl-gold);
-    border-radius:14px;
-    padding:16px 18px;
-    color:var(--ink);
-    box-shadow:0 6px 18px rgba(0,0,0,.06);
-    margin-top:22px;
-  }
-  .umsl-slab .umsl-callout .title{ margin:0 0 6px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--umsl-red); }
-  .umsl-slab .umsl-callout p{ margin:0; color:var(--ink); }
-
-  /* ----- FAQ Accordion (details/summary) ----- */
-  .umsl-slab .umsl-faq{ margin-top:8px; }
-  .umsl-slab .umsl-faq details{
-    background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin:10px 0;
-    box-shadow:0 8px 24px rgba(0,0,0,.05);
-  }
-  .umsl-slab .umsl-faq summary{
-    list-style:none; cursor:pointer; outline:none; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; gap:10px;
-  }
-  .umsl-slab .umsl-faq summary::-webkit-details-marker{ display:none; }
-  .umsl-slab .umsl-faq summary .q{ flex:1; }
-  .umsl-slab .umsl-faq summary .icon{
-    width:22px; height:22px; border-radius:6px; display:grid; place-items:center; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:800; line-height:1;
-  }
-  .umsl-slab .umsl-faq details[open] summary .icon{ background:rgba(241,190,72,.18); color:var(--umsl-red-deep); }
-  .umsl-slab .umsl-faq .a{ margin:10px 0 0; color:var(--muted); line-height:1.6; }
-
-  /* ----- Table (Courses & Hours) ----- */
-  .umsl-slab .tbl-wrap{ margin-top:22px; }
-  .umsl-slab .tbl-title{ margin:0; text-align:center; font-weight:800; letter-spacing:.02em; color:var(--umsl-red); text-transform:uppercase; font-size:clamp(20px,2.4vw,28px); }
-  .umsl-slab .tbl-underline{ width:72px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:10px auto 18px; }
-  .umsl-slab .table-responsive{ overflow:auto; border-radius:14px; box-shadow:var(--shadow-soft); background:#fff; }
-  .umsl-slab table.umsl-table{ width:100%; border-collapse:separate; border-spacing:0; min-width:680px; }
-  .umsl-slab .umsl-table thead th{
-    position:sticky; top:0; z-index:1;
-    background:linear-gradient(#BA0C2F,#8A0A23); color:#fff;
-    text-transform:uppercase; letter-spacing:.03em; font-weight:700; font-size:.85rem;
-    padding:12px 16px; text-align:left; border-bottom:1px solid rgba(0,0,0,.08);
-  }
-  .umsl-slab .umsl-table th:first-child{ border-top-left-radius:14px; }
-  .umsl-slab .umsl-table th:last-child{ border-top-right-radius:14px; }
-  .umsl-slab .umsl-table tbody td{ padding:12px 16px; font-size:.95rem; color:var(--ink); border-top:1px solid var(--border); background:#fff; }
-  .umsl-slab .umsl-table tbody tr:nth-child(even) td{ background:#fafbfc; }
-  .umsl-slab .umsl-table td.num, .umsl-slab .umsl-table th.num{ text-align:right; white-space:nowrap; }
-  .umsl-slab .tbl-note{ display:block; margin:.5rem 0 0; color:var(--muted); font-size:.85rem; text-align:right; }
-
-  /* ----- Sticky Enroll Sidebar (+ mobile CTA) ----- */
-  .umsl-slab .umsl-rail{
-    position:sticky; top:24px; align-self:start;
-    background:#fff; border:1px solid var(--border); border-radius:var(--radius);
-    box-shadow:var(--shadow); padding:18px 18px 16px;
-  }
-  .umsl-slab .umsl-rail .eyebrow{
-    display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:6px;
-  }
-  .umsl-slab .umsl-rail h3{ margin:0 0 6px; font-size:1.25rem; font-weight:900; color:var(--ink) }
-  .umsl-slab .umsl-rail .underline{ width:60px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:6px 0 12px }
-  .umsl-slab .umsl-rail p{ margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:.98rem }
-  .umsl-slab .umsl-rail .meta{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 14px }
-  .umsl-slab .umsl-rail .chip{ background:#fafafa; border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:.85rem; color:var(--ink) }
-  .umsl-slab .umsl-rail .btn-primary{
-    display:block; width:100%; text-align:center; text-decoration:none;
-    background:var(--umsl-red); color:#fff; font-weight:800; letter-spacing:.02em;
-    border-radius:12px; padding:12px 14px; transition:transform .1s ease, box-shadow .2s ease;
-  }
-  .umsl-slab .umsl-rail .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.12) }
-  .umsl-slab .umsl-rail .btn-primary[aria-disabled="true"]{ opacity:.6; pointer-events:none }
-  .umsl-slab .umsl-rail .btn-outline{
-    display:block; width:100%; margin-top:10px; text-align:center; text-decoration:none;
-    background:#fff; color:var(--umsl-red); font-weight:700; border:2px solid var(--umsl-red);
-    border-radius:12px; padding:10px 12px;
-  }
-  .umsl-slab .umsl-rail .note{ margin-top:8px; font-size:.8rem; color:var(--muted); text-align:center }
-
-  /* Mobile persistent CTA */
-  .umsl-slab .umsl-rail-mobile{
-    position:fixed; left:16px; right:16px; bottom:16px; z-index:50; display:none;
-    background:#fff; border:1px solid var(--border); box-shadow:0 14px 40px rgba(0,0,0,.18);
-    border-radius:14px; padding:10px;
-  }
-  .umsl-slab .umsl-rail-mobile a{
-    display:block; text-align:center; text-decoration:none; background:var(--umsl-red); color:#fff;
-    font-weight:800; padding:12px 14px; border-radius:10px;
-  }
-  .umsl-slab .umsl-rail-mobile a[aria-disabled="true"]{ opacity:.6; pointer-events:none }
-
-  @media (max-width:980px){
-    .umsl-slab .umsl-rail{ display:none }             /* hide desktop rail */
-    .umsl-slab .umsl-rail-mobile{ display:block }     /* show mobile sticky CTA */
-  }
- <style>
-/* HOW IT WORKS — grid layout */
-.umsl-slab .how-grid{
-  display:grid; gap:22px; margin:22px 0 0;
+/* ==================== UMSL Slab (condensed, scoped) ==================== */
+.umsl-slab{
+  --umsl-red:#BA0C2F; --umsl-red-deep:#8A0A23; --umsl-gold:#F1BE48;
+  --ink:#12212B; --muted:#6A7680; --bg:#FFF; --bg-soft:#F5F6F8; --border:#E6E8EB;
+  --shadow:0 12px 36px rgba(0,0,0,.10); --shadow-soft:0 8px 28px rgba(0,0,0,.08);
+  --radius:18px;
+  font-family:'Roboto',system-ui,-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-@media (min-width:720px){
-  .umsl-slab .how-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+.umsl-slab *{ box-sizing:border-box; }
+.umsl-slab .wrap{ max-width:1120px; margin:0 auto; padding:28px 20px; }
+
+/* ========== Layout: main + sticky rail ========== */
+.umsl-slab .umsl-rail-layout{
+  display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:28px; align-items:start;
 }
-.umsl-slab .how-card{
-  background:var(--card);
-  border:1px solid #e6e8eb;
-  border-radius:14px;
-  padding:18px;
-  box-shadow:var(--shadow);
+@media (max-width:980px){ .umsl-slab .umsl-rail-layout{ grid-template-columns:1fr } }
+
+/* ========== Hero ========== */
+.umsl-slab .umsl-hero{
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(1200px 400px at 20% -20%, rgba(186,12,47,.12), transparent 55%),
+    radial-gradient(1200px 400px at 100% 0%, rgba(241,190,72,.10), transparent 55%),
+    var(--bg);
+  border-radius:var(--radius); box-shadow:var(--shadow); padding:32px 22px;
 }
-.umsl-slab .how-icon{
-  width:36px; height:36px; color:var(--umsl-red);
-  display:block; margin-bottom:8px;
+@media (min-width:900px){ .umsl-slab .umsl-hero{ padding:48px 56px } }
+.umsl-slab .umsl-hero .eyebrow{
+  display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:8px;
 }
-.umsl-slab .how-title{
-  margin:0 0 4px;
-  font-weight:800; letter-spacing:.02em; color:var(--ink);
-  text-transform:uppercase; font-size:.9rem;
+.umsl-slab .umsl-hero h1{ margin:0 0 10px; font-weight:900; font-size:clamp(28px,4.2vw,44px); color:var(--ink) }
+.umsl-slab .umsl-hero .underline{ width:78px; height:5px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 16px }
+.umsl-slab .umsl-hero p{ margin:0; font-size:clamp(16px,1.5vw,18px); line-height:1.6; color:var(--muted); max-width:72ch }
+
+/* ========== Panels & headings ========== */
+.umsl-slab .umsl-panel{ background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); padding:22px; margin-top:22px }
+@media (min-width:900px){ .umsl-slab .umsl-panel{ padding:28px 32px } }
+.umsl-slab .umsl-h2{
+  margin:0; text-transform:uppercase; letter-spacing:.04em; font-weight:900; font-size:clamp(20px,2.6vw,28px); color:var(--umsl-red); text-align:left;
 }
-.umsl-slab .how-text{
-  margin:0; color:var(--muted); font-size:.98rem; line-height:1.5;
+.umsl-slab .umsl-underline{ width:64px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 14px }
+
+/* ========== Check List ========== */
+.umsl-slab .umsl-list{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:10px }
+.umsl-slab .umsl-list li{ position:relative; padding-left:28px; color:var(--ink); font-size:1rem; line-height:1.55 }
+.umsl-slab .umsl-list li::before{
+  content:"✓"; position:absolute; left:0; top:.15rem; width:20px; height:20px; display:grid; place-items:center;
+  border-radius:6px; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:700; font-size:.85rem;
 }
 
-  /* ===================== Mobile Optimizations (UMSL) ===================== */
-
-/* 1) Typography & safe wrapping */
-.umsl-slab h1,
-.umsl-slab .umsl-h2,
-.umsl-slab .how-title,
-.umsl-slab .chip { overflow-wrap:anywhere; word-break:normal; }
-
-@media (max-width: 480px){
-  .umsl-slab .wrap{ padding:20px 16px; }
-  .umsl-slab .umsl-hero{ padding:22px 16px; border-radius:14px; }
-  .umsl-slab .umsl-hero h1{ font-size:clamp(22px,7vw,32px); }
-  .umsl-slab .umsl-h2{ font-size:clamp(18px,5.5vw,22px); }
-  .umsl-slab p, .umsl-slab li{ font-size:.98rem; line-height:1.55; }
+/* ========== Callout (Prerequisites) ========== */
+.umsl-slab .umsl-callout{
+  background:linear-gradient(0deg, rgba(241,190,72,.10), rgba(241,190,72,.10)), #FFF;
+  border:1px solid rgba(241,190,72,.5); border-left:6px solid var(--umsl-gold);
+  border-radius:14px; padding:16px 18px; color:var(--ink); box-shadow:0 6px 18px rgba(0,0,0,.06); margin-top:22px;
 }
+.umsl-slab .umsl-callout .title{ margin:0 0 6px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--umsl-red) }
+.umsl-slab .umsl-callout p{ margin:0 }
 
-/* 2) Panels & cards spacing */
-@media (max-width: 720px){
-  .umsl-slab .umsl-panel{ padding:18px; }
-  .umsl-slab .how-grid{ grid-template-columns:1fr; gap:16px; }
+/* ========== FAQ (details/summary) ========== */
+.umsl-slab .umsl-faq{ margin-top:8px }
+.umsl-slab .umsl-faq details{
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin:10px 0; box-shadow:0 8px 24px rgba(0,0,0,.05);
 }
-
-/* 3) Table usability on touch (keeps sticky header; smooth scroll) */
-.umsl-slab .table-responsive{ -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; }
-.umsl-slab .umsl-table thead th,
-.umsl-slab .umsl-table tbody td{ scroll-snap-align:start; }
-@media (max-width:560px){
-  .umsl-slab .umsl-table thead th,
-  .umsl-slab .umsl-table tbody td{ padding:10px 12px; font-size:.9rem; }
+.umsl-slab .umsl-faq summary{
+  list-style:none; cursor:pointer; outline:none; font-weight:700; color:var(--ink);
+  display:flex; align-items:flex-start; gap:10px;
 }
+.umsl-slab .umsl-faq summary::-webkit-details-marker{ display:none }
+.umsl-slab .umsl-faq summary .q{ flex:1 }
+.umsl-slab .umsl-faq summary .icon{
+  width:22px; height:22px; border-radius:6px; display:grid; place-items:center; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:800; line-height:1;
+}
+.umsl-slab .umsl-faq details[open] summary .icon{ background:rgba(241,190,72,.18); color:var(--umsl-red-deep) }
+.umsl-slab .umsl-faq .a{ margin:10px 0 0; color:var(--muted); line-height:1.6 }
 
-/* 4) Sticky rail & mobile CTA: make room and respect safe areas (iOS notch) */
+/* ========== Table (Courses & Hours) ========== */
+.umsl-slab .tbl-wrap{ margin-top:22px }
+.umsl-slab .tbl-title{ margin:0; text-align:center; font-weight:800; letter-spacing:.02em; color:var(--umsl-red); text-transform:uppercase; font-size:clamp(20px,2.4vw,28px) }
+.umsl-slab .tbl-underline{ width:72px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:10px auto 18px }
+.umsl-slab .table-responsive{ overflow:auto; border-radius:14px; box-shadow:var(--shadow-soft); background:#fff; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory }
+.umsl-slab table.umsl-table{ width:100%; border-collapse:separate; border-spacing:0; min-width:680px }
+.umsl-slab .umsl-table thead th{
+  position:sticky; top:0; z-index:1; background:linear-gradient(#BA0C2F,#8A0A23); color:#fff;
+  text-transform:uppercase; letter-spacing:.03em; font-weight:700; font-size:.85rem; padding:12px 16px; text-align:left; border-bottom:1px solid rgba(0,0,0,.08);
+}
+.umsl-slab .umsl-table th:first-child{ border-top-left-radius:14px }
+.umsl-slab .umsl-table th:last-child{ border-top-right-radius:14px }
+.umsl-slab .umsl-table tbody td{ padding:12px 16px; font-size:.95rem; color:var(--ink); border-top:1px solid var(--border); background:#fff; scroll-snap-align:start }
+.umsl-slab .umsl-table tbody tr:nth-child(even) td{ background:#fafbfc }
+.umsl-slab .umsl-table td.num, .umsl-slab .umsl-table th.num{ text-align:right; white-space:nowrap }
+.umsl-slab .tbl-note{ display:block; margin:.5rem 0 0; color:var(--muted); font-size:.85rem; text-align:right }
+
+/* ========== Sticky Enroll Rail + Mobile CTA ========== */
+.umsl-slab .umsl-rail{
+  position:sticky; top:24px; align-self:start; background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 18px 16px;
+}
+.umsl-slab .umsl-rail .eyebrow{
+  display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:6px;
+}
+.umsl-slab .umsl-rail h3{ margin:0 0 6px; font-size:1.25rem; font-weight:900; color:var(--ink) }
+.umsl-slab .umsl-rail .underline{ width:60px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:6px 0 12px }
+.umsl-slab .umsl-rail p{ margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:.98rem }
+.umsl-slab .umsl-rail .meta{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 14px }
+.umsl-slab .umsl-rail .chip{ background:#fafafa; border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:.85rem; color:var(--ink) }
+.umsl-slab .umsl-rail .btn-primary{
+  display:block; width:100%; text-align:center; text-decoration:none; background:var(--umsl-red); color:#fff;
+  font-weight:800; letter-spacing:.02em; border-radius:12px; padding:12px 14px; transition:transform .1s ease, box-shadow .2s ease;
+}
+.umsl-slab .umsl-rail .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.12) }
+.umsl-slab .umsl-rail .btn-primary[aria-disabled="true"]{ opacity:.6; pointer-events:none }
+.umsl-slab .umsl-rail .btn-outline{
+  display:block; width:100%; margin-top:10px; text-align:center; text-decoration:none;
+  background:#fff; color:var(--umsl-red); font-weight:700; border:2px solid var(--umsl-red);
+  border-radius:12px; padding:10px 12px;
+}
+.umsl-slab .umsl-rail .note{ margin-top:8px; font-size:.8rem; color:var(--muted); text-align:center }
+
+/* Mobile persistent CTA */
+.umsl-slab .umsl-rail-mobile{
+  position:fixed; left:16px; right:16px; bottom:16px; z-index:50; display:none;
+  background:#fff; border:1px solid var(--border); box-shadow:0 14px 40px rgba(0,0,0,.18); border-radius:14px; padding:10px;
+}
+.umsl-slab .umsl-rail-mobile a{
+  display:block; text-align:center; text-decoration:none; background:var(--umsl-red); color:#fff;
+  font-weight:800; padding:12px 14px; border-radius:10px; min-height:44px; display:grid; place-items:center;
+}
+.umsl-slab .umsl-rail-mobile a[aria-disabled="true"]{ opacity:.6; pointer-events:none }
+
 @media (max-width:980px){
-  /* add bottom space so content isn't covered by the mobile CTA */
-  .umsl-slab .wrap{ padding-bottom:calc(80px + env(safe-area-inset-bottom)); }
+  .umsl-slab .umsl-rail{ display:none }
+  .umsl-slab .umsl-rail-mobile{ display:block }
+  /* add bottom space so content isn't hidden behind CTA; respect safe areas */
+  .umsl-slab .wrap{ padding-bottom:calc(80px + env(safe-area-inset-bottom)) }
   .umsl-slab .umsl-rail-mobile{
     left:max(12px, env(safe-area-inset-left));
     right:max(12px, env(safe-area-inset-right));
     bottom:max(12px, env(safe-area-inset-bottom));
   }
-  .umsl-slab .umsl-rail-mobile a{ min-height:44px; display:grid; place-items:center; }
 }
 
-/* 5) Tap targets (AA accessibility) */
-.umsl-slab .btn-primary,
-.umsl-slab .btn-outline{ min-height:44px; }
-
-/* 6) Media defaults: avoid overflow */
-.umsl-slab img,
-.umsl-slab video,
-.umsl-slab svg{ max-width:100%; height:auto; }
-
-/* 7) Motion preferences */
-@media (prefers-reduced-motion:reduce){
-  .umsl-slab *{ transition:none !important; animation:none !important; }
+/* ========== HOW IT WORKS — GRID ========== */
+.umsl-slab .how-grid{ display:grid; gap:22px; margin:22px 0 0 }
+@media (min-width:560px){ .umsl-slab .how-grid{ grid-template-columns:repeat(2, minmax(0,1fr)) } }
+@media (min-width:720px){ .umsl-slab .how-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) } }
+.umsl-slab .how-card{
+  background:#fff; border:1px solid var(--border); border-radius:14px; padding:18px; box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
 }
+@media (prefers-reduced-motion:reduce){ .umsl-slab .how-card{ transition:none } }
+.umsl-slab .how-card:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.09) }
+.umsl-slab .how-icon{ width:36px; height:36px; color:var(--umsl-red); display:block; margin-bottom:8px }
+.umsl-slab .how-title{
+  margin:0 0 4px; font-weight:800; letter-spacing:.02em; color:var(--ink);
+  text-transform:uppercase; font-size:.9rem;
+}
+.umsl-slab .how-text{ margin:0; color:var(--muted); font-size:.98rem; line-height:1.5 }
+
+/* ========== Mobile optimizations (type, spacing, media) ========== */
+.umsl-slab h1, .umsl-slab .umsl-h2, .umsl-slab .how-title, .umsl-slab .chip{ overflow-wrap:anywhere; word-break:normal }
+@media (max-width:480px){
+  .umsl-slab .wrap{ padding:20px 16px }
+  .umsl-slab .umsl-hero{ padding:22px 16px; border-radius:14px }
+  .umsl-slab .umsl-hero h1{ font-size:clamp(22px,7vw,32px) }
+  .umsl-slab .umsl-h2{ font-size:clamp(18px,5.5vw,22px) }
+  .umsl-slab p, .umsl-slab li{ font-size:.98rem; line-height:1.55 }
+}
+@media (max-width:720px){ .umsl-slab .umsl-panel{ padding:18px } }
+@media (max-width:560px){
+  .umsl-slab .umsl-table thead th, .umsl-slab .umsl-table tbody td{ padding:10px 12px; font-size:.9rem }
+}
+
+/* ========== Media defaults & reduced motion ========== */
+.umsl-slab img, .umsl-slab video, .umsl-slab svg{ max-width:100%; height:auto }
+.umsl-slab .btn-primary, .umsl-slab .btn-outline{ min-height:44px }
+@media (prefers-reduced-motion:reduce){ .umsl-slab *{ transition:none !important; animation:none !important } }
 </style>
-
 
 <div class="umsl-slab">
   <div class="wrap">
