@@ -185,6 +185,63 @@
 
   /* small helper when used with other blocks */
   .umsl-slab .umsl-gap{ height:24px; }
+
+  /* ===================== Mobile Optimizations (UMSL) ===================== */
+
+/* 1) Typography & safe wrapping */
+.umsl-slab h1,
+.umsl-slab .umsl-h2,
+.umsl-slab .how-title,
+.umsl-slab .chip { overflow-wrap:anywhere; word-break:normal; }
+
+@media (max-width: 480px){
+  .umsl-slab .wrap{ padding:20px 16px; }
+  .umsl-slab .umsl-hero{ padding:22px 16px; border-radius:14px; }
+  .umsl-slab .umsl-hero h1{ font-size:clamp(22px,7vw,32px); }
+  .umsl-slab .umsl-h2{ font-size:clamp(18px,5.5vw,22px); }
+  .umsl-slab p, .umsl-slab li{ font-size:.98rem; line-height:1.55; }
+}
+
+/* 2) Panels & cards spacing */
+@media (max-width: 720px){
+  .umsl-slab .umsl-panel{ padding:18px; }
+  .umsl-slab .how-grid{ grid-template-columns:1fr; gap:16px; }
+}
+
+/* 3) Table usability on touch (keeps sticky header; smooth scroll) */
+.umsl-slab .table-responsive{ -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; }
+.umsl-slab .umsl-table thead th,
+.umsl-slab .umsl-table tbody td{ scroll-snap-align:start; }
+@media (max-width:560px){
+  .umsl-slab .umsl-table thead th,
+  .umsl-slab .umsl-table tbody td{ padding:10px 12px; font-size:.9rem; }
+}
+
+/* 4) Sticky rail & mobile CTA: make room and respect safe areas (iOS notch) */
+@media (max-width:980px){
+  /* add bottom space so content isn't covered by the mobile CTA */
+  .umsl-slab .wrap{ padding-bottom:calc(80px + env(safe-area-inset-bottom)); }
+  .umsl-slab .umsl-rail-mobile{
+    left:max(12px, env(safe-area-inset-left));
+    right:max(12px, env(safe-area-inset-right));
+    bottom:max(12px, env(safe-area-inset-bottom));
+  }
+  .umsl-slab .umsl-rail-mobile a{ min-height:44px; display:grid; place-items:center; }
+}
+
+/* 5) Tap targets (AA accessibility) */
+.umsl-slab .btn-primary,
+.umsl-slab .btn-outline{ min-height:44px; }
+
+/* 6) Media defaults: avoid overflow */
+.umsl-slab img,
+.umsl-slab video,
+.umsl-slab svg{ max-width:100%; height:auto; }
+
+/* 7) Motion preferences */
+@media (prefers-reduced-motion:reduce){
+  .umsl-slab *{ transition:none !important; animation:none !important; }
+}
 </style>
 
 
