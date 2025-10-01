@@ -156,6 +156,31 @@
     .umsl-slab .umsl-rail{ display:none }             /* hide desktop rail */
     .umsl-slab .umsl-rail-mobile{ display:block }     /* show mobile sticky CTA */
   }
+ /* ---- HOW IT WORKS ---- */
+  .how-grid{
+    display:grid;gap:22px;margin:22px 0 0
+  }
+  @media(min-width:720px){.how-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .how-card{
+    background:var(--card);
+    border:1px solid #e6e8eb;
+    border-radius:14px;
+    padding:18px;
+    box-shadow:var(--shadow);
+  }
+  .how-icon{
+    width:36px;height:36px;color:var(--umsl-red);display:block;margin-bottom:8px
+  }
+  .how-title{
+    margin:0 0 4px;
+    font-weight:800;letter-spacing:.02em;color:var(--ink);
+    text-transform:uppercase;font-size:.9rem
+  }
+  .how-text{margin:0;color:var(--muted);font-size:.98rem;line-height:1.5}
+
+  /* small helper for spacing when used together */
+  .umsl-gap{height:24px}
+</style>
 
   /* Minor spacing helper */
   .umsl-slab .gap{ height:16px; }
