@@ -1,0 +1,367 @@
+<!-- ============ UMSL | Lean Six Sigma Green Belt: Full Page + Sticky Enroll Sidebar ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ----- Namespaced UMSL tokens & base ----- */
+  .umsl-slab{
+    --umsl-red:#BA0C2F;        /* Triton Red */
+    --umsl-red-deep:#8A0A23;
+    --umsl-gold:#F1BE48;       /* Gold */
+    --ink:#12212B;
+    --muted:#6A7680;
+    --bg:#FFFFFF;
+    --bg-soft:#F5F6F8;
+    --border:#E6E8EB;
+    --shadow:0 12px 36px rgba(0,0,0,.10);
+    --shadow-soft:0 8px 28px rgba(0,0,0,.08);
+    --radius:18px;
+    font-family:'Roboto',system-ui,-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  .umsl-slab *{ box-sizing:border-box; }
+  .umsl-slab .wrap{ max-width:1120px; margin:0 auto; padding:28px 20px; }
+
+  /* ----- Two-column layout: content + sticky rail ----- */
+  .umsl-slab .umsl-rail-layout{
+    display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:28px; align-items:start;
+  }
+  @media (max-width:980px){ .umsl-slab .umsl-rail-layout{ grid-template-columns:1fr } }
+
+  /* ----- Hero ----- */
+  .umsl-slab .umsl-hero{
+    position:relative;
+    background:
+      radial-gradient(1200px 400px at 20% -20%, rgba(186,12,47,.12), transparent 55%),
+      radial-gradient(1200px 400px at 100% 0%, rgba(241,190,72,.10), transparent 55%),
+      var(--bg);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    padding:32px 22px;
+  }
+  @media (min-width:900px){ .umsl-slab .umsl-hero{ padding:48px 56px; } }
+  .umsl-slab .umsl-hero .eyebrow{
+    display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:8px;
+  }
+  .umsl-slab .umsl-hero h1{ margin:0 0 10px; font-weight:900; font-size:clamp(28px,4.2vw,44px); color:var(--ink); }
+  .umsl-slab .umsl-hero .underline{ width:78px; height:5px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 16px; }
+  .umsl-slab .umsl-hero p{ margin:0; font-size:clamp(16px,1.5vw,18px); line-height:1.6; color:var(--muted); max-width:72ch; }
+
+  /* ----- Panels & headings ----- */
+  .umsl-slab .umsl-panel{ background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); padding:22px; margin-top:22px; }
+  @media (min-width:900px){ .umsl-slab .umsl-panel{ padding:28px 32px; } }
+  .umsl-slab .umsl-h2{ margin:0; text-transform:uppercase; letter-spacing:.04em; font-weight:900; font-size:clamp(20px,2.6vw,28px); color:var(--umsl-red); text-align:left; }
+  .umsl-slab .umsl-underline{ width:64px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:8px 0 14px; }
+
+  /* ----- Lists (checks) ----- */
+  .umsl-slab .umsl-list{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:10px; }
+  .umsl-slab .umsl-list li{ position:relative; padding-left:28px; color:var(--ink); font-size:1rem; line-height:1.55; }
+  .umsl-slab .umsl-list li::before{
+    content:"✓"; position:absolute; left:0; top:.15rem; width:20px; height:20px; display:grid; place-items:center;
+    border-radius:6px; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:700; font-size:.85rem;
+  }
+
+  /* ----- Callout (Prerequisites) ----- */
+  .umsl-slab .umsl-callout{
+    background:linear-gradient(0deg, rgba(241,190,72,.10), rgba(241,190,72,.10)), #FFF;
+    border:1px solid rgba(241,190,72,.5);
+    border-left:6px solid var(--umsl-gold);
+    border-radius:14px;
+    padding:16px 18px;
+    color:var(--ink);
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+    margin-top:22px;
+  }
+  .umsl-slab .umsl-callout .title{ margin:0 0 6px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--umsl-red); }
+  .umsl-slab .umsl-callout p{ margin:0; color:var(--ink); }
+
+  /* ----- FAQ Accordion (details/summary) ----- */
+  .umsl-slab .umsl-faq{ margin-top:8px; }
+  .umsl-slab .umsl-faq details{
+    background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin:10px 0;
+    box-shadow:0 8px 24px rgba(0,0,0,.05);
+  }
+  .umsl-slab .umsl-faq summary{
+    list-style:none; cursor:pointer; outline:none; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; gap:10px;
+  }
+  .umsl-slab .umsl-faq summary::-webkit-details-marker{ display:none; }
+  .umsl-slab .umsl-faq summary .q{ flex:1; }
+  .umsl-slab .umsl-faq summary .icon{
+    width:22px; height:22px; border-radius:6px; display:grid; place-items:center; background:rgba(186,12,47,.08); color:var(--umsl-red); font-weight:800; line-height:1;
+  }
+  .umsl-slab .umsl-faq details[open] summary .icon{ background:rgba(241,190,72,.18); color:var(--umsl-red-deep); }
+  .umsl-slab .umsl-faq .a{ margin:10px 0 0; color:var(--muted); line-height:1.6; }
+
+  /* ----- Table (Courses & Hours) ----- */
+  .umsl-slab .tbl-wrap{ margin-top:22px; }
+  .umsl-slab .tbl-title{ margin:0; text-align:center; font-weight:800; letter-spacing:.02em; color:var(--umsl-red); text-transform:uppercase; font-size:clamp(20px,2.4vw,28px); }
+  .umsl-slab .tbl-underline{ width:72px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:10px auto 18px; }
+  .umsl-slab .table-responsive{ overflow:auto; border-radius:14px; box-shadow:var(--shadow-soft); background:#fff; }
+  .umsl-slab table.umsl-table{ width:100%; border-collapse:separate; border-spacing:0; min-width:680px; }
+  .umsl-slab .umsl-table thead th{
+    position:sticky; top:0; z-index:1;
+    background:linear-gradient(#BA0C2F,#8A0A23); color:#fff;
+    text-transform:uppercase; letter-spacing:.03em; font-weight:700; font-size:.85rem;
+    padding:12px 16px; text-align:left; border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .umsl-slab .umsl-table th:first-child{ border-top-left-radius:14px; }
+  .umsl-slab .umsl-table th:last-child{ border-top-right-radius:14px; }
+  .umsl-slab .umsl-table tbody td{ padding:12px 16px; font-size:.95rem; color:var(--ink); border-top:1px solid var(--border); background:#fff; }
+  .umsl-slab .umsl-table tbody tr:nth-child(even) td{ background:#fafbfc; }
+  .umsl-slab .umsl-table td.num, .umsl-slab .umsl-table th.num{ text-align:right; white-space:nowrap; }
+  .umsl-slab .tbl-note{ display:block; margin:.5rem 0 0; color:var(--muted); font-size:.85rem; text-align:right; }
+
+  /* ----- Sticky Enroll Sidebar (+ mobile CTA) ----- */
+  .umsl-slab .umsl-rail{
+    position:sticky; top:24px; align-self:start;
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:18px 18px 16px;
+  }
+  .umsl-slab .umsl-rail .eyebrow{
+    display:inline-block; text-transform:uppercase; letter-spacing:.08em; font-weight:700; font-size:.78rem; color:var(--umsl-red); margin-bottom:6px;
+  }
+  .umsl-slab .umsl-rail h3{ margin:0 0 6px; font-size:1.25rem; font-weight:900; color:var(--ink) }
+  .umsl-slab .umsl-rail .underline{ width:60px; height:4px; background:var(--umsl-gold); border-radius:999px; margin:6px 0 12px }
+  .umsl-slab .umsl-rail p{ margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:.98rem }
+  .umsl-slab .umsl-rail .meta{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 14px }
+  .umsl-slab .umsl-rail .chip{ background:#fafafa; border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:.85rem; color:var(--ink) }
+  .umsl-slab .umsl-rail .btn-primary{
+    display:block; width:100%; text-align:center; text-decoration:none;
+    background:var(--umsl-red); color:#fff; font-weight:800; letter-spacing:.02em;
+    border-radius:12px; padding:12px 14px; transition:transform .1s ease, box-shadow .2s ease;
+  }
+  .umsl-slab .umsl-rail .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.12) }
+  .umsl-slab .umsl-rail .btn-primary[aria-disabled="true"]{ opacity:.6; pointer-events:none }
+  .umsl-slab .umsl-rail .btn-outline{
+    display:block; width:100%; margin-top:10px; text-align:center; text-decoration:none;
+    background:#fff; color:var(--umsl-red); font-weight:700; border:2px solid var(--umsl-red);
+    border-radius:12px; padding:10px 12px;
+  }
+  .umsl-slab .umsl-rail .note{ margin-top:8px; font-size:.8rem; color:var(--muted); text-align:center }
+
+  /* Mobile persistent CTA */
+  .umsl-slab .umsl-rail-mobile{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:50; display:none;
+    background:#fff; border:1px solid var(--border); box-shadow:0 14px 40px rgba(0,0,0,.18);
+    border-radius:14px; padding:10px;
+  }
+  .umsl-slab .umsl-rail-mobile a{
+    display:block; text-align:center; text-decoration:none; background:var(--umsl-red); color:#fff;
+    font-weight:800; padding:12px 14px; border-radius:10px;
+  }
+  .umsl-slab .umsl-rail-mobile a[aria-disabled="true"]{ opacity:.6; pointer-events:none }
+
+  @media (max-width:980px){
+    .umsl-slab .umsl-rail{ display:none }             /* hide desktop rail */
+    .umsl-slab .umsl-rail-mobile{ display:block }     /* show mobile sticky CTA */
+  }
+
+  /* Minor spacing helper */
+  .umsl-slab .gap{ height:16px; }
+</style>
+
+<div class="umsl-slab">
+  <div class="wrap">
+
+    <!-- LAYOUT: content + sticky rail -->
+    <div class="umsl-rail-layout">
+
+      <!-- MAIN CONTENT COLUMN -->
+      <main id="umsl-main">
+
+        <!-- HERO -->
+        <section class="umsl-hero" aria-labelledby="hero-title">
+          <span class="eyebrow">Course Description</span>
+          <h1 id="hero-title">Lean Six Sigma Green Belt</h1>
+          <div class="underline" aria-hidden="true"></div>
+          <p>
+            The Lean Six Sigma Green Belt equips professionals to lead process improvement initiatives and make data-driven decisions.
+            You’ll gain expertise in process mapping, risk management, and benchmark setting to enhance operational efficiency.
+            This globally recognized certification is highly valued across industries such as manufacturing, technology, healthcare, and logistics,
+            making it a powerful credential for career growth.
+          </p>
+        </section>
+
+        <!-- COURSES & HOURS TABLE -->
+        <div class="tbl-wrap">
+          <h2 class="tbl-title">Program Courses &amp; Hours</h2>
+          <div class="tbl-underline" aria-hidden="true"></div>
+          <div class="table-responsive">
+            <table class="umsl-table" role="table" aria-describedby="umsl-hours-note">
+              <thead>
+                <tr>
+                  <th scope="col">Course Name</th>
+                  <th scope="col">Course Type</th>
+                  <th scope="col">Course ID</th>
+                  <th scope="col" class="num">On-Demand (Hrs)</th>
+                  <th scope="col" class="num">Live Class (Hrs)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Introduction to Six Sigma</td>
+                  <td>Mandatory</td>
+                  <td>SL1940</td>
+                  <td class="num">7</td>
+                  <td class="num">&mdash;</td>
+                </tr>
+                <tr>
+                  <td>Lean management</td>
+                  <td>Mandatory</td>
+                  <td>SL88</td>
+                  <td class="num">4.9</td>
+                  <td class="num">&mdash;</td>
+                </tr>
+                <tr>
+                  <td>Lean Six Sigma Application in Information Technology</td>
+                  <td>Mandatory</td>
+                  <td>SL505</td>
+                  <td class="num">3</td>
+                  <td class="num">&mdash;</td>
+                </tr>
+                <tr>
+                  <td>Lean Six Sigma Black Belt</td>
+                  <td>Mandatory</td>
+                  <td>SL42</td>
+                  <td class="num">8.9</td>
+                  <td class="num">36</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <small id="umsl-hours-note" class="tbl-note">&mdash; indicates not applicable / no hours.</small>
+        </div>
+
+        <!-- PREREQUISITES (callout) -->
+        <aside class="umsl-callout" role="note" aria-labelledby="prereq-title">
+          <h3 id="prereq-title" class="title">Prerequisites</h3>
+          <p>
+            No prior experience in quality management is required. To be eligible for the IASSC Green Belt exam, learners must hold
+            an undergraduate degree or a high school diploma (or equivalent).
+          </p>
+        </aside>
+
+        <!-- LEARNING OBJECTIVES -->
+        <section class="umsl-panel" aria-labelledby="learning-objectives">
+          <h2 id="learning-objectives" class="umsl-h2">Learning Objectives</h2>
+          <div class="umsl-underline" aria-hidden="true"></div>
+          <ul class="umsl-list">
+            <li>Master Six Sigma process mapping techniques to analyze and improve workflows</li>
+            <li>Develop Six Sigma–based risk management strategies to enhance quality and reliability</li>
+            <li>Learn Six Sigma benchmark-setting methods for continuous performance improvement</li>
+            <li>Gain expertise in leading Six Sigma projects and making strategic, data-driven decisions</li>
+          </ul>
+        </section>
+
+        <!-- WHO SHOULD ENROLL -->
+        <section class="umsl-panel" aria-labelledby="who-enroll">
+          <h2 id="who-enroll" class="umsl-h2">Who Should Enroll</h2>
+          <div class="umsl-underline" aria-hidden="true"></div>
+          <div style="display:grid;gap:12px;max-width:840px">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Quality System Managers</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Quality Analysts &amp; Quality Managers</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Quality Auditors</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Quality Engineers</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Quality Supervisors</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Operations / Production Managers</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Project &amp; Product Managers</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Business Analysts &amp; Process Improvement Professionals</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03)">Professionals seeking Lean Six Sigma certification</div>
+          </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="umsl-panel" aria-labelledby="how-works">
+          <h2 id="how-works" class="umsl-h2">How It Works</h2>
+          <div class="umsl-underline" aria-hidden="true"></div>
+          <div style="display:grid;gap:22px;grid-template-columns:1fr}
+                      @media (min-width:720px){grid-template-columns:repeat(3,minmax(0,1fr))}">
+            <article style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)">
+              <h3 style="margin:0 0 4px;font-weight:800;letter-spacing:.02em;color:var(--ink);text-transform:uppercase;font-size:.9rem">Format</h3>
+              <p style="margin:0;color:var(--muted);font-size:.98rem;line-height:1.5">All online with self-paced content and live instructor sessions.</p>
+            </article>
+            <article style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)">
+              <h3 style="margin:0 0 4px;font-weight:800;letter-spacing:.02em;color:var(--ink);text-transform:uppercase;font-size:.9rem">Time Commitment</h3>
+              <p style="margin:0;color:var(--muted);font-size:.98rem;line-height:1.5">Approx. 3 months with ~8–10 hours per week.</p>
+            </article>
+            <article style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)">
+              <h3 style="margin:0 0 4px;font-weight:800;letter-spacing:.02em;color:var(--ink);text-transform:uppercase;font-size:.9rem">Real-World Projects</h3>
+              <p style="margin:0;color:var(--muted);font-size:.98rem;line-height:1.5">Apply Lean Six Sigma tools (DMAIC, RCA, control plans) to workplace problems.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="umsl-panel" aria-labelledby="faq-title">
+          <h2 id="faq-title" class="umsl-h2">Frequently Asked Questions</h2>
+          <div class="umsl-underline" aria-hidden="true"></div>
+          <div class="umsl-faq" role="list">
+            <details role="listitem">
+              <summary><span class="icon">?</span><span class="q">What is the focus of this course?</span></summary>
+              <div class="a">It focuses on DMAIC methodology, process improvement, and applying Lean Six Sigma tools to deliver measurable business results.</div>
+            </details>
+            <details role="listitem">
+              <summary><span class="icon">?</span><span class="q">Who should enroll?</span></summary>
+              <div class="a">Quality managers, analysts, auditors, engineers, supervisors, and professionals aiming to improve organizational efficiency.</div>
+            </details>
+            <details role="listitem">
+              <summary><span class="icon">?</span><span class="q">What practical skills will I gain?</span></summary>
+              <div class="a">You’ll master DMAIC, root cause analysis, risk management, and leading Six Sigma projects using data-driven strategies.</div>
+            </details>
+            <details role="listitem">
+              <summary><span class="icon">?</span><span class="q">What are the real-world applications?</span></summary>
+              <div class="a">You’ll apply Lean Six Sigma to reduce waste, improve quality, and optimize processes across industries like manufacturing and healthcare.</div>
+            </details>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- STICKY ENROLL SIDEBAR (same grid wrapper) -->
+      <aside class="umsl-rail" aria-labelledby="enroll-rail-title">
+        <span class="eyebrow">Enroll</span>
+        <h3 id="enroll-rail-title">Lean Six Sigma Green Belt</h3>
+        <div class="underline" aria-hidden="true"></div>
+
+        <div class="meta">
+          <span class="chip">Live + On-Demand</span>
+          <span class="chip">Certificate-Ready</span>
+          <span class="chip">Instructor-Led</span>
+        </div>
+
+        <a class="btn-primary" id="umslEnrollBtn" href="#" role="link" aria-disabled="true" data-enroll-url="">Enroll (Coming Soon)</a>
+        <a class="btn-outline" href="#request-info">Request Information</a>
+        <div class="note">Enrollment link activates when the page is live.</div>
+      </aside>
+    </div>
+
+    <!-- Mobile persistent CTA -->
+    <div class="umsl-rail-mobile" role="region" aria-label="Enroll">
+      <a id="umslEnrollBtnMobile" href="#" role="link" aria-disabled="true" data-enroll-url="">Enroll (Coming Soon)</a>
+    </div>
+
+    <div class="gap" aria-hidden="true"></div>
+  </div>
+</div>
+
+<script>
+  /* Set your enrollment URL here when ready */
+  (function(){
+    var ENROLL_URL = ""; // e.g., "/programs/lean-six-sigma-green-belt/enroll"
+    var buttons = [document.getElementById('umslEnrollBtn'), document.getElementById('umslEnrollBtnMobile')];
+    buttons.forEach(function(btn){
+      if(!btn) return;
+      if(ENROLL_URL){
+        btn.setAttribute('href', ENROLL_URL);
+        btn.removeAttribute('aria-disabled');
+        btn.textContent = 'Enroll Now';
+      }else{
+        btn.setAttribute('href', '#');
+        btn.setAttribute('aria-disabled','true');
+        btn.textContent = 'Enroll (Coming Soon)';
+      }
+    });
+  })();
+</script>
+<!-- ============================= /END UMSL BLOCK ============================= -->
